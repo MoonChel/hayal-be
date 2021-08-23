@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: $APP_NAME-configmap
+data:
+  HOST: "0.0.0.0"
+  PORT: "1337"
+  NODE_ENV: "production"
+

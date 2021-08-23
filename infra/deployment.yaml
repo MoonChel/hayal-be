@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hayal-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hayal
+  template:
+    metadata:
+      labels:
+        app: hayal
+    spec:
+      containers:
+      - name: hayal
+        envFrom:
+          - configMapRef:
+              name: hayal-configmap
+          - secretRef:
+              name: hayal-secrets
+        image: moonchel/hayal-be:be414a74c83de6c7a1bfd1113db1486ba24fd18d
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 1337
